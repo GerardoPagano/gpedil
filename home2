@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "";
+            display: block;
+            padding-top: 100%; /* Mantiene il rapporto 1:1 */
+        }
+        .fade-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 100%;
+            opacity: 0;
+            transition: left 1s ease, opacity 1s ease;
+        }
+        .fade-img.active {
+            left: 0;
+            opacity: 1;
+        }
+        .fade-img.inactive {
+            left: -100%;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://lh5.googleusercontent.com/45OF-uMSgTHsoX4F5psiuSRIf-JJrI-wdPtbzn2PVYYg2U-OghjZKFicTvqhzcYWwFB86BhikdvKPOD0O162oqM=w1280" class="fade-img active" alt="">
+        <img src="https://lh5.googleusercontent.com/vGif7kOmE3iQT5vFQqyolMhgHfURJ3B7DZvv-5g1-BFAO9IaHDPNiPnEBpYGghHMq6dgoBCI9VDyrtYlD4wN_Q=w1280" class="fade-img" alt="">
+    </div>
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.fade-img');
+
+        setInterval(() => {
+            images[currentIndex].classList.remove('active');
+            images[currentIndex].classList.add('inactive');
+
+            currentIndex = (currentIndex + 1) % images.length;
+
+            images[currentIndex].classList.remove('inactive');
+            images[currentIndex].classList.add('active');
+        }, 5000); // Cambia immagine ogni 5 secondi
+    </script>
+</body>
+</html>
