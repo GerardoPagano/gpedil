@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slideshow</title>
+  <style>
+    .fade-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+    }
+    
+    .fade-image {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+    
+    .fade-image.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="fade-container">
+    <img src="https://raw.githubusercontent.com/GerardoPagano/gpedil/c09deb2e2148deba676dd512a6bc4225818bee40/1_imm%20home.jpg" class="fade-image visible" id="image1">
+    <img src="https://raw.githubusercontent.com/GerardoPagano/gpedil/c09deb2e2148deba676dd512a6bc4225818bee40/4_imm%20home.jpg" class="fade-image" id="image2">
+  </div>
+
+  <script>
+    let currentImageIndex = 0;
+    const images = document.querySelectorAll('.fade-image');
+    const totalImages = images.length;
+
+    function showNextImage() {
+      images[currentImageIndex].classList.remove('visible');
+      currentImageIndex = (currentImageIndex + 1) % totalImages;
+      images[currentImageIndex].classList.add('visible');
+    }
+
+    setInterval(showNextImage, 4000);
+  </script>
+</body>
+</html>
